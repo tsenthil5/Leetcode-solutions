@@ -1,39 +1,19 @@
 class Solution:
     def arithmeticTriplets(self, nums: List[int], diff: int) -> int:
-
+        hashSet = set(nums)
         res = 0
-        for idx, num in enumerate(nums):
-            curr = idx+1
-            count = 1
-            while curr!=len(nums):
-                if nums[curr] - num > diff:
+        for num in nums:
+            iteration = 2
+            while iteration > 0:
+                if num+diff in hashSet:
+                    num = num+diff
+                    iteration-=1
+
+                else:
                     break
-                elif nums[curr] - num == diff:
-                    count+=1
-                    num = nums[curr]
-                    if count == 3:
-                        res+=1
-                curr+=1
+
+            if iteration == 0:
+                res+=1
 
         return res
-
-        '''
-res = 0
-curr = 1
-num = 0
-    1<3
-    4>3
-curr = 2
-num = 4
-    count = 2
-        '''
-
-
-
-
-
-
-
-
-
         
