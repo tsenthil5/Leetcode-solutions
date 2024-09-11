@@ -4,7 +4,7 @@ class Solution:
             return False
         while(n!=1):
             n = n/2
-            if n % 1 != 0 or n == 0:
+            if n % 1 != 0:
                 return False
 
         return True
