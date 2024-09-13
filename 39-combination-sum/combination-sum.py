@@ -21,6 +21,7 @@ class Solution:
 
 
         res = []
+        candidates.sort()
         backtrack(0, [], 0)
         return res
         
