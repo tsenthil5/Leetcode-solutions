@@ -13,7 +13,7 @@ class Solution:
         for idx in range(len(nums)-1):
             if idx >=2 and nums[idx] < currSum:
                 currSum+=nums[idx]
-                totalPerimeter = max(totalPerimeter, currSum)
+                totalPerimeter = currSum
             
             else:
                 currSum+=nums[idx]
@@ -22,7 +22,7 @@ class Solution:
         idx+=1
         if nums[idx] < currSum:
             currSum+=nums[idx]
-            totalPerimeter = max(totalPerimeter, currSum)
+            totalPerimeter = currSum
 
         return totalPerimeter
 
