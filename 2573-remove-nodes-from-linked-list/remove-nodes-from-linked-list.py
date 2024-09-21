@@ -7,9 +7,7 @@ class Solution:
     def removeNodes(self, head: Optional[ListNode]) -> Optional[ListNode]:
         def linkedListRev(head):
             pre, cur = head, head.next
-            
             while cur:
-                
                 temp = cur.next
                 cur.next = pre
                 if pre == head:
@@ -23,16 +21,12 @@ class Solution:
         newHead = linkedListRev(head)
         startPtr = newHead
         prevHead = newHead
-        
         while newHead:
             if newHead.val >= currMax:
                 currMax = newHead.val
                 prevHead = newHead
-
             else:
-                prevHead.next = newHead.next
-
-            
+                prevHead.next = newHead.next 
             newHead = newHead.next
 
         return (linkedListRev(startPtr))
