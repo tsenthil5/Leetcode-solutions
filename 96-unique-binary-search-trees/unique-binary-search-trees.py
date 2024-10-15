@@ -1,15 +1,23 @@
 class Solution:
-    @cache
     def numTrees(self, n: int) -> int:
-        if n<=1:
-            return 1
+        def dp(node):
 
+            if node < 1:
+                return 1
 
-        total = 0
-        for i in range(1,n+1):
-            leftChild = self.numTrees(i-1)
-            rightChild = self.numTrees(n-i)
-            total+=leftChild*rightChild
+            if node in cache:
+                return cache[node]
 
-        return total
+            total = 0
+            for i in range(1,node+1,1):
+                left = dp(i-1)
+                right = dp(node-i)
+                total += left*right
+
+            cache[node] = total
+            return total
+
+        cache = {}
+        return dp(n)
+        
         
