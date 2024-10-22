@@ -52,28 +52,53 @@ class Solution:
 
 
         def delTwoChild(target, parent):
-            # Corrected recursive function to find the inorder successor
-            def findInorderSucc(node, parent):
-                # The inorder successor is the leftmost node in the right subtree.
-                if not node.left:
-                    return node, parent  # Return successor and its parent.
+            
 
-                # Recur to find the leftmost node.
-                return findInorderSucc(node.left, node)
 
-            # Find the inorder successor and its parent.
+            def findInorderSucc(targetTwo, parentTwo):
+                
+                if not targetTwo.left:
+                    return (targetTwo, parentTwo)
+
+                return findInorderSucc(targetTwo.left, targetTwo)
+                
+
+
             inOrdChild, inOrdPar = findInorderSucc(target.right, target)
+            
+            if inOrdPar.right == inOrdChild:
 
-            # Replace target's value with the successor's value.
-            target.val = inOrdChild.val
+                if inOrdChild.right:
+                    inOrdPar.right = inOrdChild.right
+                else:
+                    inOrdPar.right = None
 
-            # Update the parent's pointer to remove the inorder successor.
-            if inOrdPar.left == inOrdChild:
-                inOrdPar.left = inOrdChild.right
             else:
-                inOrdPar.right = inOrdChild.right
+
+                if inOrdChild.right:
+                    inOrdPar.left = inOrdChild.right
+                else:
+                    inOrdPar.left = None
+            if target == root:
+                inOrdChild.left = root.left
+                inOrdChild.right = root.right
+                return inOrdChild
+
+            else:
+                if parent.left == target:
+                    inOrdChild.left = target.left
+                    inOrdChild.right = target.right
+                    parent.left = inOrdChild
+                    
+
+                else:
+                    inOrdChild.left = target.left
+                    inOrdChild.right = target.right
+                    parent.right = inOrdChild
+                    
 
             return root
+
 
         target = findNode(root, root)
         if not target:
